@@ -1,9 +1,9 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-AddEventHandler('main', 'OnBeforeEventSend', array("userFeedbackForm", "OnBeforeEventSendHandler"));
-AddEventHandler('main', 'OnEventLogGetAuditTypes', array("userFeedbackForm", "OnEventLogGetAuditTypes"));
+AddEventHandler('main', 'OnBeforeEventSend', array("Ex2AllType", "OnBeforeEventSendHandler"));
+AddEventHandler('main', 'OnEventLogGetAuditTypes', array("Ex2AllType", "OnEventLogGetAuditTypes"));
 
-class userFeedbackForm
+class Ex2AllType
 {
     public static function OnBeforeEventSendHandler(&$arFields, &$arTemplate)
     {
