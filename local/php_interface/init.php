@@ -5,6 +5,9 @@ AddEventHandler('main', 'OnEventLogGetAuditTypes', array("Ex2AllType", "OnEventL
 
 class Ex2AllType
 {
+    /* 
+    ex2-51
+    */
     public static function OnBeforeEventSendHandler(&$arFields, &$arTemplate)
     {
         global $USER;
