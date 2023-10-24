@@ -95,6 +95,7 @@ $APPLICATION->IncludeFile(
 		
 			<div id="sidebar">
 <?$APPLICATION->IncludeComponent("bitrix:menu", "left", array(
+	"CACHE_SELECTED_ITEMS" => "Y",
 	"ROOT_MENU_TYPE" => "left",
 	"MENU_CACHE_TYPE" => "A",
 	"MENU_CACHE_TIME" => "36000000",
