@@ -10,6 +10,16 @@ if(!Loader::includeModule("iblock"))
 	return;
 }
 
+echo '<pre>' . print_r($arParams, true) . '</pre>';
+
+if (empty($arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"])) {
+    $arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"] = 0;
+}
+
+if (empty($arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"])) {
+	$arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"] = 0;
+}
+
 if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
 {
 	
