@@ -30,6 +30,7 @@ $arParams["PROPERTY_CODE"] = trim($arParams["PROPERTY_CODE"] ?? '');
 echo '<pre>' . print_r( $arParams, true ) . '</pre>';
 global $USER;
 if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false: $USER->GetGroups())))){
+
 	// классификаторы
 	$arResult["CLASSIFIER_COUNT"] = 0;
 	$arSelectElements = array(
@@ -47,14 +48,50 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     while($arElement = $rsElements->GetNext()) {
         $arClassifier[$arElement["ID"]] = $arElement;
         $arClassifierID[] = $arElement["ID"];
-    }
+    
+	}
+	unset($arElement);
 
 	if (is_countable($arClassifierID)) {
 		$arResult["CLASSIFIER_COUNT"] = count($arClassifierID);
 	}
+
+	// элементы с привязкой с классификатору
+    $arSelectElementsProducts = array (
+        "ID",
+        "NAME",
+        "DETAIL_PAGE_URL",
+    );
+    $arFilterElementsProducts = array (
+        "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
+        "CHECK_PERMISSIONS" => $arParams["CACHE_GROUPS"],
+        "PROPERTY_".$arParams["PROPERTY_CODE"] => $arClassifierID,
+        "ACTIVE" => "Y"
+    );
+
+    $rsElements = CIBlockElement::GetList(array(), $arFilterElementsProducts, false, false, $arSelectElementsProducts);
+
+    while($arElement= $rsElements->GetNextElement()) {
+        $arElementField = $arElement->GetFields();
+        $arElementField["PROPERTIES"] = $arElement->GetProperties();
+
+        foreach ($arElementField["PROPERTIES"][$arParams["PROPERTY_CODE"]]["VALUE"] as $value) {
+            $arClassifier[$value]["ELEMENTS"][$arElementField["ID"]] = $arElementField;
+        }
+    }
+
+	$arResult = $arClassifier;
+
+	unset($arElement);
+	unset($arElementField);
+	unset($arClassifier);
+	unset($arClassifierID);
+
+    $this->SetResultCacheKeys(array("COUNT"));
+    $this->includeComponentTemplate();
 }
 
-if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
+/* if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
 {
 	
 	//iblock elements
@@ -115,5 +152,5 @@ if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
 	
 	
 }
-$this->includeComponentTemplate();	
+$this->includeComponentTemplate();	 */
 ?>
