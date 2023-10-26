@@ -1,5 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 <p><b><?= GetMessage("SIMPLECOMP_EXAM2_CAT_TITLE") ?></b></p>
+<?= GetMessage("SIMPLECOMP_EXAM2_TIME") ?> <?echo time();?>
 <? if (is_countable($arResult["CLASSIFIER"]) && count($arResult["CLASSIFIER"]) > 0) { ?>
     <ul>
         <? foreach ($arResult["CLASSIFIER"] as $arClassifier) { ?>

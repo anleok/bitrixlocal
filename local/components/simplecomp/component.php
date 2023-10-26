@@ -28,8 +28,10 @@ $arParams["CLASSIFIER_IBLOCK_ID"] = trim($arParams["CLASSIFIER_IBLOCK_ID"] ?? ''
 $arParams["PROPERTY_CODE"] = trim($arParams["PROPERTY_CODE"] ?? '');
 
 global $USER;
-if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false: $USER->GetGroups())))){
-
+global $CACHE_MANAGER;
+if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false: $USER->GetGroups()), "/tagged_iblock"))){
+	// сброс кеша при изменении элемента инфоблока
+	$CACHE_MANAGER->RegisterTag("iblock_id_3");
 	// классификаторы
 	$arResult["CLASSIFIER_COUNT"] = 0;
 	$arSelectElements = array(
