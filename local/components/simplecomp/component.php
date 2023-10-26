@@ -10,14 +10,26 @@ if(!Loader::includeModule("iblock"))
 	return;
 }
 
-echo '<pre>' . print_r($arParams, true) . '</pre>';
-
 if (empty($arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"])) {
     $arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"] = 0;
 }
 
 if (empty($arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"])) {
 	$arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"] = 0;
+}
+
+if (!isset($arParams["CACHE_TIME"]))
+{
+	$arParams["CACHE_TIME"] = 36000000;
+}
+
+$arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"] = trim($arParams["SIMPLECOMP_EXAM2_PRODUCTS_IBLOCK_ID"] ?? '');
+$arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"] = trim($arParams["SIMPLECOMP_EXAM2_CLASSIFIER_IBLOCK_ID"] ?? '');
+$arParams["SIMPLECOMP_EXAM2_PROPERTY_CODE"] = trim($arParams["SIMPLECOMP_EXAM2_PROPERTY_CODE"] ?? '');
+
+global $USER;
+if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false: $USER->GetGroups())))){
+
 }
 
 if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
