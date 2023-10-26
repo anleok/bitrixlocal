@@ -27,7 +27,6 @@ $arParams["PRODUCTS_IBLOCK_ID"] = trim($arParams["PRODUCTS_IBLOCK_ID"] ?? '');
 $arParams["CLASSIFIER_IBLOCK_ID"] = trim($arParams["CLASSIFIER_IBLOCK_ID"] ?? '');
 $arParams["PROPERTY_CODE"] = trim($arParams["PROPERTY_CODE"] ?? '');
 
-echo '<pre>' . print_r( $arParams, true ) . '</pre>';
 global $USER;
 if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false: $USER->GetGroups())))){
 
@@ -91,66 +90,4 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     $this->includeComponentTemplate();
 }
 
-/* if(intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0)
-{
-	
-	//iblock elements
-	$arSelectElems = array (
-		"ID",
-		"IBLOCK_ID",
-		"NAME",
-	);
-	$arFilterElems = array (
-		"IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
-		"ACTIVE" => "Y"
-	);
-	$arSortElems = array (
-			"NAME" => "ASC"
-	);
-	
-	$arResult["ELEMENTS"] = array();
-	$rsElements = CIBlockElement::GetList($arSortElems, $arFilterElems, false, false, $arSelectElems);
-	while($arElement = $rsElements->GetNext())
-	{
-		$arResult["ELEMENTS"][] = $arElement;
-	}
-	
-	//iblock sections
-	$arSelectSect = array (
-			"ID",
-			"IBLOCK_ID",
-			"NAME",
-	);
-	$arFilterSect = array (
-			"IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
-			"ACTIVE" => "Y"
-	);
-	$arSortSect = array (
-			"NAME" => "ASC"
-	);
-	
-	$arResult["SECTIONS"] = array();
-	$rsSections = CIBlockSection::GetList($arSortSect, $arFilterSect, false, $arSelectSect, false);
-	while($arSection = $rsSections->GetNext())
-	{
-		$arResult["SECTIONS"][] = $arSection;
-	}
-		
-	// user
-	$arOrderUser = array("id");
-	$sortOrder = "asc";
-	$arFilterUser = array(
-		"ACTIVE" => "Y"
-	);
-	
-	$arResult["USERS"] = array();
-	$rsUsers = CUser::GetList($arOrderUser, $sortOrder, $arFilterUser); // выбираем пользователей
-	while($arUser = $rsUsers->GetNext())
-	{
-		$arResult["USERS"][] = $arUser;
-	}	
-	
-	
-}
-$this->includeComponentTemplate();	 */
 ?>
