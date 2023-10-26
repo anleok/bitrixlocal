@@ -79,15 +79,16 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
         }
     }
 
-	$arResult = $arClassifier;
+	$arResult["CLASSIFIER"] = $arClassifier;
 
 	unset($arElement);
 	unset($arElementField);
 	unset($arClassifier);
 	unset($arClassifierID);
 
-    $this->SetResultCacheKeys(array("COUNT"));
+    $this->SetResultCacheKeys(array("CLASSIFIER_COUNT"));
     $this->includeComponentTemplate();
 }
 
+$APPLICATION->SetTitle(GetMessage("SIMPLECOMP_EXAM2_CLASSIFIER_COUNT") . $arResult["CLASSIFIER_COUNT"]);
 ?>
