@@ -1,0 +1,21 @@
+Host: bitrixlocal.loc
+Date: 2023-10-27 17:19:07
+array (
+  'AUTHOR' => 'Анастасия Окорокова',
+  'AUTHOR_EMAIL' => 'al.okorokova@mail.ru',
+  'EMAIL_TO' => 'al.okorokova@mail.ru',
+  'TEXT' => 'флвофлыво',
+)
+#0: Ex2_51::OnBeforeEventSendHandler
+	E:\Programs\OSPanel\domains\bitrixlocal.loc\bitrix\modules\main\classes\general\module.php:467
+#1: ExecuteModuleEventEx
+	E:\Programs\OSPanel\domains\bitrixlocal.loc\bitrix\modules\main\lib\mail\event.php:230
+#2: Bitrix\Main\Mail\Event::handleEvent
+	E:\Programs\OSPanel\domains\bitrixlocal.loc\bitrix\modules\main\lib\mail\eventmanager.php:153
+#3: Bitrix\Main\Mail\EventManager::executeEvents
+	E:\Programs\OSPanel\domains\bitrixlocal.loc\bitrix\modules\main\lib\mail\eventmanager.php:36
+#4: Bitrix\Main\Mail\EventManager::checkEvents
+	
+#5: call_user_func_array
+	E:\Programs\OSPanel\domains\bitrixlocal.loc\bitrix\modules\main\lib\application.php:720
+----------

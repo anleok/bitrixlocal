@@ -8,7 +8,6 @@ class Ex2_51
     public static function OnBeforeEventSendHandler(&$arFields, &$arTemplate)
     {
         global $USER;
-
         if ($USER->IsAuthorized()) {
             /* если пользователь авторизован  */
             $arFields["AUTHOR"] = 'Пользователь авторизован: ' . $USER->GetID() . ' (' . $USER->GetLogin() . ') ' . $USER->GetFullName() . ', данные из формы: ' . $arFields["AUTHOR"];
@@ -22,7 +21,7 @@ class Ex2_51
             "SEVERITY" => "INFO",
             "AUDIT_TYPE_ID" => "FEEDBACKFORM_AUTHOR_REWRITE_TYPE",
             "MODULE_ID" => "main",
-            "ITEM_ID" => 123,
+            "ITEM_ID" => $USER->GetID(),
             "DESCRIPTION" => "Замена данных в отсылаемом письме – " . $arFields["AUTHOR"],
         ));
     }

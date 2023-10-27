@@ -1,4 +1,5 @@
 <?
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/log.txt");
 
 if (isset($_GET['noinit']) && !empty($_GET['noinit'])) {
     $strNoInit = strval($_GET['noinit']);
